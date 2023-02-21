@@ -1,4 +1,4 @@
-/*template*/
+/*C language practice in L */
 #include<stdio.h>
 
 int main(){
