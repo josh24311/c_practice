@@ -12,7 +12,7 @@ int main(){
 	if( a > c ){
 		t = c; c = a; a = t;
 	}
-	// after above a is mim
+	// after above a is min
 	if( b > c ){
 		t = b; b = c; c = t;
 	}
