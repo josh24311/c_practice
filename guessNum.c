@@ -7,7 +7,7 @@ int main(){
 	scanf("%d",&input);
 	if(input > ans)	printf("Too large!\n");
 	else{
-		if(guess < ans)	printf("Too small\n");
+		if(input < ans)	printf("Too small\n");
 		else	printf("Correct answer!\n");
 	} 
 	return 0;
