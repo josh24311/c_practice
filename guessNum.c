@@ -1,8 +1,8 @@
-/*C language practice in L61, L69 */
+/*C language practice in L61, L69, L70 */
 #include<stdio.h>
 
 int main(){
-	int input,ans = 5;//set answer as 5
+	int input,ans = 5, count = 0;//set answer as 5
 	printf("Please enter a integer number:\n");
 	//L61 if_else
 	/*
@@ -15,11 +15,13 @@ int main(){
 	//L69 while
 	while(1){
 		scanf("%d",&input);
+		count = count +1;
 		if(input > ans)	printf("Too large\n");
 		else if(input < ans)	printf("Too small\n");
 		else break;
 	}
-	printf("Correct answer!\n");
+	printf("Correct answer in %d guesses!\n",count);
+	
 
 	return 0;
 }
