@@ -17,6 +17,7 @@ int main(){
 		scanf("%d",&input);
 		if(input > ans)	printf("Too large\n");
 		else if(input < ans)	printf("Too small\n");
+		else break;
 	}
 	printf("Correct answer!\n");
 
