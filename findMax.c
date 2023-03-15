@@ -6,6 +6,7 @@ int main(){
 	/*two num find max*/
 	/*
 	printf("Please enter two integers: \n");
+	fflush(stdout);
 	scanf("%d",&a);
 	scanf("%d",&b);
 	max = a;
@@ -16,7 +17,8 @@ int main(){
 	//*********************************
 	/*Three num find max*/
 	printf("Please enter three integers: \n");
-        scanf("%d%d%d",&a, &b, &c);
+        fflush( stdout );
+	scanf("%d%d%d",&a, &b, &c);
 	max = a;
 	if(b > max){
 		max = b;

@@ -12,6 +12,7 @@ int main()
 {
     int i, arr[5]={0},j,tmp,fl=0;
     printf("Enter %d number:\n",all);
+    fflush(stdout);
     for(i=0;i<all;i++){
         scanf("%d",&arr[i]);
         

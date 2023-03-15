@@ -17,8 +17,10 @@ int main()
     int i,l=-1,r=-1;
     int arr[5] = {0};
     printf("Enter %d int :\n",anum);
+    fflush(stdout);
     for(i=0;i<anum;i++){
         printf("%d: ",i+1);
+	fflush(stdout);
         scanf("%d",&arr[i]);
     }
     while(!( r ==0)){
@@ -26,6 +28,7 @@ int main()
         int ab = -1;// for min abs
         int ind;
         printf("R :");
+	fflush(stdout);
         scanf("%d",&r);
         printf("ANS: ");
         ab = r;

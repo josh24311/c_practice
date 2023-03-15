@@ -5,6 +5,7 @@
 int main(){
 	int id;
 	printf("Please enter ID : \n");
+	fflush(stdout);
 	scanf("%d",&id);
 	switch(id){
 		case 2:

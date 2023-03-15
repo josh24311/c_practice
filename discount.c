@@ -5,6 +5,7 @@ int main(){
 	int setm = 300,dism = 3000,guest;
 	double dis = 0.8,pay;
 	printf("Please enter how many guests :");
+	fflush(stdout);
 	scanf("%d",&guest);
 	pay = guest * setm;
 	if( pay >= dism){

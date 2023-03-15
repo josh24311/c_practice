@@ -4,8 +4,10 @@
 int main(){
 	int input,ans = 5, count = 0;//set answer as 5
 	printf("Please enter a integer number:\n");
+	fflush(stdout);
 	//L61 if_else
 	/*
+	fflush(stdout);
 	scanf("%d",&input);
 	if(input > ans)	printf("Too large!\n");
 	else{

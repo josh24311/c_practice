@@ -1,0 +1,1 @@
+sed -i '8ifflush(stdout);' 1_flush

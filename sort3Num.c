@@ -3,7 +3,8 @@
 
 int main(){
 	int a,b,c,t;
-	printf("Please enter three number(a,b,c) as input : \n");
+	printf("Please enter three number(a,b,c) as input : ");
+	printf("\n");
 	scanf("%d%d%d",&a,&b,&c);
 	printf("Variables now :\ta = %d, b = %d, c = %d\n",a,b,c);
 	if( a > b ){

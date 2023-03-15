@@ -4,6 +4,7 @@
 int main(){
 	int input,sum = 0, count = 0, fstNz = 0;
 	printf("Please enter input integer, enter 0 is for end: \n");
+	fflush(stdout);
 	while(1){
 		scanf("%d",&input);
 		count = count + 1;

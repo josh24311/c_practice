@@ -5,7 +5,8 @@ int main(){
 	int a,b,c,med;
 	/*Three num find medium*/
 	printf("Please enter three integers: \n");
-        scanf("%d%d%d",&a, &b, &c);
+	fflush(stdout);
+	scanf("%d%d%d",&a, &b, &c);
 	/*
 	if(a <= b){
 		med = b;
