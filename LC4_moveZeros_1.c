@@ -9,7 +9,7 @@ Input: [0,1,0,3,12]
 Output: [1,3,12,0,0]
 
 *******************************************************************************/
-
+//Method 1 will cause TLE error
 #include <stdio.h>
 void movezeros(int*, int);
 int main()
