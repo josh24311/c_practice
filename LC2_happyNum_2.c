@@ -7,13 +7,17 @@ Write your code in this editor and press "Run" button to compile and execute it.
 *******************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 int next_n(int);
 bool contains(int*, int, int);
 bool isHappy(int);
 int main()
 {
-    int n = 12345;
+    int n ;
+    printf("Please input n: ");
+    fflush(stdin);
+    scanf("%d",&n);
     printf("n is a happyNumber ? %s\n",isHappy(n)? "True" : "False");
 
     return 0;
