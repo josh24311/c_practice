@@ -1,8 +1,12 @@
 /******************************************************************************
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
+Example:
+
+Example:
+
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
 
 *******************************************************************************/
 
