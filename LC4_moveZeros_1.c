@@ -16,7 +16,7 @@ int main()
     for(int i = 0; i < numsSize; i++){
         printf("%d ", nums[i]);    
     }
-    
+    printf("\n");
 
     return 0;
 }
@@ -24,13 +24,13 @@ void movezeros(int* nums, int numsSize){
     
     while(1){
         int count = 0;
-        for(int i = 1; i <= numsSize; i++){
-            if(nums[i-1] == 0 && nums[i] != 0){
+        for(int i = 0; i+1 < numsSize; i++){
+            if(nums[i] == 0 && nums[i+1] != 0){
                 //not finish yet
                 count++;
-                int t = nums[i-1];
-                nums[i-1] = nums[i];
-                nums[i] = t;
+                int t = nums[i];
+                nums[i] = nums[i+1];
+                nums[i+1] = t;
                 break;
             }
         }
