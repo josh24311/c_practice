@@ -23,10 +23,8 @@ int main() {
 int countElements(int* arr, int arrSize){
   //printf("hihi\n");
   int count = 0;
-  bool isFound[1001];//0~1000
-  for(int i = 0; i < arrSize; i++){
-    isFound[i] = 0;
-  }
+  bool isFound[1002] = {false};//0~1000
+  
   for(int i = 0; i < arrSize; i++){
     isFound[arr[i]] = 1;
   }
