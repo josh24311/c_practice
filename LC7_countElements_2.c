@@ -16,8 +16,9 @@ int main() {
   int arrla = 6;
   int arrb[4] = {1, 1, 2, 2};
   int arrlb = 4;
-  
-  printf("%d\n",countElements(arrb, arrlb));
+  int arrc[8] = {1,1,3,3,5,5,7,7};
+  int arrlc = 8;
+  printf("%d\n",countElements(arrc, arrlc));
   return 0;
 }
 int countElements(int* arr, int arrSize){
