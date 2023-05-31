@@ -5,6 +5,7 @@ LC10_minstack
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef struct{
   //int data[100];
