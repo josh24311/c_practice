@@ -60,6 +60,6 @@ int main() {
   int ht[] = {0, 0, 1, 0, 0, 0, 1, 1};
   int size = 8;
 
-  printf("\Contiguous Array length is %d\n", findMaxLength(ht, size));
+  printf("Contiguous Array length is %d\n", findMaxLength(ht, size));
   return 0;
 }
