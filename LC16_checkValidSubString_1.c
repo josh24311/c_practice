@@ -76,7 +76,12 @@ bool checkValidString(char * s){
   }
   //printf("len(s) is %d\n",len);
   // 給入起點和終點
-  return checkValidSubString(s, 0, len-1, cache);
+  bool isValid = checkValidSubString(s, 0, len-1, cache);
+  for(int i = 0;i < len; i++){
+	free(cache[i]);
+  }
+  free(cache);
+  return isValid;
   
 }
 
