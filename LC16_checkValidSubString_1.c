@@ -53,7 +53,7 @@ bool checkValidSubString(char * s, int i, int j, int** cache){
     // s[i+1],...s[j] 找一個對應的 ')'
     // (left)right: 找到一個左小，在其右邊找到一個右小or星號，若left,right 都為valid，則整個string valid
   // 開頭為左括弧，或者開頭為星號但是充當左括弧用
-  for(int k = i; k <=j; k++){
+  for(int k = i+1; k <=j; k++){
       if(s[k] == ')' || s[k] == '*'){//找到index k 為右括弧或者星號時配對成功
         //printf("a=%d ",checkValidSubString(s,i+1,k-1));
         //printf("b=%d ",checkValidSubString(s,k+1,j));
