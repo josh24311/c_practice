@@ -26,7 +26,50 @@ struct TreeNode {
       struct TreeNode *left;
       struct TreeNode *right;
 };
-
+int height(struct TreeNode* node)
+{
+    if (node == NULL)
+        return 0;
+    else {
+        /* compute the height of each subtree */
+        int lheight = height(node->left);
+        int rheight = height(node->right);
+ 
+        /* use the larger one */
+        if (lheight > rheight) {
+            return (lheight + 1);
+        }
+        else {
+            return (rheight + 1);
+        }
+    }
+}
+/* Print nodes at a given level */
+void printGivenLevel(struct TreeNode* root, int level)
+{
+    if (root == NULL)
+    {
+      printf("NULL ");
+      return;
+    }
+        
+    if (level == 1)
+        printf("%d ", root->val);
+    else if (level > 1) {
+        printGivenLevel(root->left, level - 1);
+        printGivenLevel(root->right, level - 1);
+    }
+}
+ 
+void printLevelOrder(struct TreeNode* root)
+{
+    int h = height(root);
+    int i;
+    for (i = 1; i <= h; i++) {
+        printGivenLevel(root, i);
+        printf(" ");
+    }
+}
 struct TreeNode* bstFromPreorderRanged(int* preorder, int start, int end ){
   if(start == end) return NULL;
   // [8] 5 1 7  | 10 12
@@ -50,23 +93,6 @@ struct TreeNode* bstFromPreorder(int* preorder, int preorderSize){
   
 }
 
-void printTree(struct TreeNode* root, int h)
-{
-  if(root==NULL){
-    printf("NULL ");
-    return;
-  }
-  else{
-    printf("%d ",root->val);
-    
-    
-  }
-  
-  printTree(root->left,h);
-  printTree(root->right,h);
-}
-
-
 
 int main() {
   int* arr1 = malloc(sizeof(int)*6);
@@ -89,12 +115,12 @@ int main() {
   arr2[1] = 3;
   struct TreeNode* a = malloc(sizeof(struct TreeNode)*1);
   a = bstFromPreorder(arr1, 6);
-  printTree(a,3);
+  printLevelOrder(a);
   printf("\n");
   struct TreeNode* b = malloc(sizeof(struct TreeNode)*1);
   b = bstFromPreorder(arr2, 2);
   printf("----------\n");
-  printTree(b,2);
+  printLevelOrder(b);
 
   
   //printf("output tree for arr1: %d \n\n",0,search(arr1,7,0));
