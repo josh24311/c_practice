@@ -73,31 +73,20 @@ struct ListNode{
 } ;
 
 int removeDuplicates(int* nums, int numsSize){
-  // 1 1 2
-  int* arr = malloc(sizeof(int)*numsSize);
-  for(int i = 0; i < numsSize; i++){
-    arr[i] = 999;
-  }
-  int map[201] = {0};// -100 ... 0 ... 100
-  int count = 0;
-  for(int i = 0; i < numsSize; i++){
-    if(map[nums[i]+100] != 0){
-      continue;
+  // [1,1,2]
+  // [0,0,1,1,1,2,2,3,3,4]
+  // 題目要求in-place replace, 即 不另分配記憶體空間
+  if(numsSize <= 1) return numsSize;
+
+  int now = 0;
+  for(int i = 1; i < numsSize; i++){
+    if(nums[i] != nums[now]){
+      now++;
+      nums[now] = nums[i];
     }
-    else{
-      arr[count] = nums[i];
-      count++;
-      map[nums[i]+100] = 1;
-    }
+        
   }
-  for(int i = 0; i < numsSize; i++){
-    //最後nums 只剩 unique的元素
-    //printf("arr[ %d ] = %d\n",i,arr[i]);
-    nums[i] = arr[i];
-  }
-  
-  free(arr);
-  return count;
+  return now+1;
 }
 
 int main() {
