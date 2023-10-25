@@ -1,4 +1,5 @@
 /*
+#p
 #linkedList
 #notice line 94  curr->next = NULL
 #
