@@ -14,8 +14,8 @@ Explanation: [4,-1,2,1] has the largest sum = 6.
 Kadane's algorithm
 走訪整個陣列，每經過一個陣列元素，可以決定出"以該筆資料為 subarray 結尾"的 maximum subarray sum ，
 這樣的 maximum subarray 有以下兩種可能 :
-前一個陣列元素做為 subarray 結尾的 maximum subarray sum 再加上當前陣列元素
-當前陣列元素
+1.前一個陣列元素做為 subarray 結尾的 maximum subarray sum 再加上當前陣列元素
+2.當前陣列元素
 有了以各個陣列元素為結尾的 mamimum subarray sum 後，
 從中挑出最大值，就是 input array 中的 maximum subarray sum 。
 
