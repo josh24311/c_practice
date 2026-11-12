@@ -1,5 +1,4 @@
 /*
-#array
 27. Remove Element
 Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
 
@@ -25,7 +24,7 @@ for (int i = 0; i < actualLength; i++) {
 }
 If all assertions pass, then your solution will be accepted.
 
-
+ 
 
 Example 1:
 
@@ -40,7 +39,7 @@ Output: 5, nums = [0,1,4,0,3,_,_,_]
 Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
 Note that the five elements can be returned in any order.
 It does not matter what you leave beyond the returned k (hence they are underscores).
-
+ 
 
 Constraints:
 
@@ -49,60 +48,51 @@ Constraints:
 0 <= val <= 100
 */
 #include <iostream>
-#include <cstdlib>
-#include <cmath>
-#include <vector> 
-#include <numeric>
-#include <climits>    
-#include <string>
-#include <algorithm>
-#include <map>
-#include <unordered_map>
-#include <stack>
-#include <queue>
-#include <ctime>
-
+#include <vector>
 using namespace std;
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
- struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- };
-// ---------------------------------------
-/*
-T:O(n) , S:O(1)
-*/
+
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-      if(nums.size() == 0)return 0;
-      int p = 0;
-      for(int i = 0; i < nums.size(); i++){
-        if(nums[i] != val){
-          nums[p++] = nums[i];
+        /*
+        //作法一, 判斷重複後將用erase()刪除該元素, 後方陣列往前搬移 S: O(1) , T : O(n^2)
+        int s = nums.size();
+        int cur = 0, k = s, i = 0;
+        
+        while(cur < s) {
+            if (nums[i] != val) {
+                i++;
+                cur++;
+            } else {
+                nums.erase(nums.begin()+i);
+                cur++;
+                k--;
+            }
         }
-      }
-      return p;
+        return k;
+        */
+        //作法二 , 陣列內雙指標, LeetCode 只要求前 k 個元素是正確答案，後面的元素不需要特別清除或維持原樣 S: O(1) , T : O(n)
+        int k = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            if (nums[i] != val)  {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
     }
 };
 
-
-// ---------------------------------------
-int main() {
-  Solution s;
-  vector<int> nums = {3,2,2,3};
-  int val = 3;
-  int k = s.removeElement(nums, val);
-  cout << k << endl;
-  
-  return 0;
+int main() 
+{
+    Solution S;
+    vector<int> a = {0,1,2,2,3,0,4,2};
+    int v = 2;
+    int ans;
+    ans = S.removeElement(a, v);
+    cout << "k = " << ans << endl;
+    for(int ele:a) {
+        cout<<ele<<" ";
+    }
+    return 0;
 }
