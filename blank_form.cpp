@@ -14,7 +14,6 @@ int cmp(const void* pa, const void* pb )
     return 0;
 }
 
-
 int main() 
 {
     Solution s;
