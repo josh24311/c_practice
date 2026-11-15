@@ -1,7 +1,6 @@
 /*
-#array
 80. Remove Duplicates from Sorted Array II
-Given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that each unique element appears at most twice. The relative order of the elements should be kept the same.
+You are given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that each unique element appears at most twice. The relative order of the elements should be kept the same.
 
 Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
 
@@ -42,93 +41,72 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 
 Constraints:
 
-1 <= nums.length <= 3 * 10^4
--10^4 <= nums[i] <= 10^4
+1 <= nums.length <= 3 * 104
+-104 <= nums[i] <= 104
 nums is sorted in non-decreasing order.
 */
 #include <iostream>
-#include <cstdlib>
-#include <cmath>
-#include <vector> 
-#include <numeric>
-#include <climits>    
-#include <string>
-#include <algorithm>
-#include <map>
-#include <unordered_map>
-#include <stack>
-#include <queue>
-#include <ctime>
-
+#include <vector>
 using namespace std;
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
- struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- };
-// ---------------------------------------
-/*
-T:O(n) , S:O(1)
-*/
+
+int cmp(const void* pa, const void* pb )
+{
+    const int *a = (int*)pa;
+    const int *b = (int*)pb;
+    if (*a > *b) 
+        return 1;
+    else if (*a < *b)
+        return -1;
+
+    return 0;
+}
+
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-      int n = nums.size();
-      int p = 1;
-      int res = 1;
-      int counter = 1;
-      int tmp = nums[0];
-      for(int i = 1; i < n; i++){
-        if(nums[i] != tmp){
-          nums[p] = nums[i];
-          tmp = nums[i];
-          p++;
-          res++;
-          counter = 1;
+        //想法一 更新時機: 重複第一次，或是不重複的第一次
+        /*
+        int k = 1, same = 0;
+        for(int i = 1; i < nums.size(); i++) {
+            if (nums[i] == nums[i-1]) {
+                if (same == 0) {
+                    nums[k] = nums[i];
+                    k++;
+                    same++;
+                }
+            } else {
+                nums[k] = nums[i];
+                k++;
+                if (same) {   
+                    same = 0;
+                }
+            }
         }
-        else{
-          if(counter >= 2){
-            continue;
-          }
-          else{
-            nums[p] = nums[i];
-            p++;
-            res++;
-            counter++;
-          }
+        return k;
+        */
+        //想法二，同題目26，只是將允許重複的寬度變為2
+        if (nums.size() <= 2) {
+            return nums.size();
         }
-      }
-      return res;
+        int k = 2;
+        for (int i = 2; i < nums.size(); i++) {
+            if (nums[i] != nums[k-2]) {
+                nums[k++] = nums[i];
+            }
+        }
+        return k;
     }
 };
 
-
-// ---------------------------------------
-int main() {
-  Solution s;
-  vector<int> v1 = {1,1,1,2,2,3};
-  int k = s.removeDuplicates(v1);
-  cout << "k: " << k << endl;
-  for (int i = 0; i < k; i++) {
-    cout << v1[i] << " ";
-  }
-  cout << endl;
-  vector<int> v2 = {0,0,1,1,1,1,2,3,3};
-  k = s.removeDuplicates(v2);
-  cout << "k: " << k << endl;
-  for (int i = 0; i < k; i++) {
-    cout << v2[i] << " ";
-  }
-  cout << endl;
-  return 0;
-  
+int main() 
+{
+    Solution s;
+    int r = 0;
+    vector<int> a = {1,1,1,2,2,3}; // {1,2,3,4,5}  {0,0,1,1,1,1,2,3,3} {1,1,1,2,2,3}
+    r = s.removeDuplicates(a);
+    cout << "r = " << r << endl;
+    for(int element:a){
+        cout<<element<<" ";
+    }
+    return 0;
 }
