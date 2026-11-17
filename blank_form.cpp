@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ int cmp(const void* pa, const void* pb )// need include cstdlib
 
     return 0;
 }
+
 
 
 int main() 
