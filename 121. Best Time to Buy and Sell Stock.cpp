@@ -62,6 +62,8 @@ public:
         return max;
         */
         // 想法二 , 動態維護目前為止的最低價 minv , 持續更新maxp S:O(1) , T:O(n)
+        // 掃描到第 i 天時，minv 是前 i-1 天的最低價，所以 prices[i] - minv 就是「在第 i 天賣出」能得到的最大利潤。
+        // 對每一天都算一次再取最大值，就涵蓋了所有「先買後賣」的組合。
         int maxp = 0, minv = prices[0];
 
         for(int i = 1; i < prices.size() ; i++) {
