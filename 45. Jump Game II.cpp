@@ -1,16 +1,14 @@
 /*
-#greedy
-#important
 45. Jump Game II
-You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
 
-Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at index i, you can jump to any index (i + j) where:
 
 0 <= j <= nums[i] and
 i + j < n
-Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1.
 
-
+ 
 
 Example 1:
 
@@ -21,7 +19,7 @@ Example 2:
 
 Input: nums = [2,3,0,1,4]
 Output: 2
-
+ 
 
 Constraints:
 
@@ -30,74 +28,70 @@ Constraints:
 It's guaranteed that you can reach nums[n - 1].
 */
 #include <iostream>
+#include <vector>
 #include <cstdlib>
-#include <cmath>
-#include <vector> 
-#include <numeric>
-#include <climits>    
-#include <string>
 #include <algorithm>
+#include <climits>
 
 using namespace std;
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
- struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- };
-// ---------------------------------------
-// T:O(n)  , S:O(1)
+
+int cmp(const void* pa, const void* pb )// need include cstdlib
+{
+    const int *a = (int*)pa;
+    const int *b = (int*)pb;
+    if (*a > *b) 
+        return 1;
+    else if (*a < *b)
+        return -1;
+
+    return 0;
+}
 
 class Solution {
 public:
     int jump(vector<int>& nums) {
-      int numsSize = nums.size();
-      //greedy1
-      
-      int curMax = 0; // 當前可到達的最遠位置
-      int nextMax = 0; // 以i到 curMax 中間以其中一步為跳板，下一步可到達的最遠位置
-      int jumps = 0;
-      for(int i = 0; i < numsSize - 1; i++){// 注意只需判斷到 i = numsSize - 2即可
-        nextMax = fmax(nextMax, (i + nums[i]));// 下一步可到達最遠處 ， 以i為跳板若nextMax變大則表示下一步挑此i 可達最遠
-        if(i == curMax){
-          jumps++;
-          curMax = nextMax; // 更新curMax為 nextMax也表示 這一步中最優解的那個i為那個使nextMax變大的那個i
+        //想法一, 維護一個 array , 紀錄跳到當前index所需最短步數 時間 O(n × max(nums))、空間 O(n)
+        /*
+        int l = nums.size();
+        int i, r = INT_MAX;
+        vector<int> step(l, INT_MAX);
+        step[0] = 0;
+        /*
+        //對於每個可達index依序更新step
+    
+        for(i = 0; i < l-1; i++) {
+            int e = nums[i];//可以走的最大步數
+            while(e > 0) {
+                if (i+e < l) {
+                    step[i+e] = min(step[i]+1, step[i+e]);
+                }
+                e--;
+            }
         }
-      }
-      return jumps ;
-      
-      //greedy2
-      /*
-      int jumps = 0;
-      int left = 0;
-      int right = 0;
-      while(right < numsSize -1){
-        int farthest = 0;
-        for(int i = left; i <= right; i++){ // 更新 此 jump時的可到達最遠的位置
-          farthest = fmax(farthest, i + nums[i]);
+        return step[l-1];
+        */
+        //想法二 , BFS 記錄當前這一跳的邊界end  Greedy（O(n) / O(1)）
+        int end = 0, far = 0, jump = 0;
+        for(int i = 0; i < nums.size()-1; i++) {
+            far = max(far, i+nums[i]);
+            if (i == end) {// 走到當前這一跳的邊界, 必須再跳一次
+                jump++;
+                end = far;// 下一跳的邊界 = 目前能到的最遠處
+            }
         }
-        left = right + 1;
-        right = farthest;
-        jumps++;
-      }
-      return jumps;
-      */
+        return jump;
     }
 };
-// ---------------------------------------
-int main() {
-  Solution s;
-  vector<int> ar1 = {2,3,1,1,4};
-  int ans1 = s.jump(ar1);
-  vector<int> ar2 = {2,3,0,1,4};
-  int ans2 = s.jump(ar2);
-  cout << "ans1 = " << ans1 << "\tans2 = " << ans2 <<endl;
-  return 0;
+
+int main() 
+{
+    Solution s;
+    vector<int> a = {2,3,1,1,4};
+    int r = 0;
+    r = s.jump(a);
+    cout << "r = " << r << endl;
+    for(int element:a){
+        cout<<element<<" ";
+    }
+    return 0;
 }
